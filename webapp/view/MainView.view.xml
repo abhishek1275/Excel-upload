@@ -8,7 +8,7 @@
   displayBlock="true"
 >
 
-  <App id="app">
+  <App id="app1">
     <pages>
       <Page
         id="mainPage"
@@ -17,7 +17,7 @@
       >
 
         <headerContent>
-          <Button
+          <Button id="_IDGenButton1"
             icon="sap-icon://refresh"
             tooltip="Reset"
             press="onReset"
@@ -26,32 +26,32 @@
         </headerContent>
 
         <content>
-          <VBox class="sapUiMediumMargin">
+          <VBox id="_IDGenVBox" class="sapUiMediumMargin">
 
             <!-- ====== UPLOAD PANEL ====== -->
-            <Panel width="100%" class="sapUiMediumMarginBottom">
+            <Panel id="_IDGenPanel" width="100%" class="sapUiMediumMarginBottom">
               <headerToolbar>
-                <Toolbar>
-                  <Title text="Upload Excel File" level="H4" />
+                <Toolbar id="_IDGenToolbar">
+                  <Title id="_IDGenTitle" text="Upload Excel File" level="H4" />
                 </Toolbar>
               </headerToolbar>
               <content>
-                <VBox alignItems="Center" class="sapUiMediumMargin">
+                <VBox id="_IDGenVBox1" alignItems="Center" class="sapUiMediumMargin">
 
-                  <core:Icon
+                  <core:Icon id="_IDGenIcon"
                     src="sap-icon://excel-attachment"
                     size="3rem"
                     color="#0070f2"
                     class="sapUiSmallMarginBottom"
                   />
 
-                  <Title
+                  <Title id="_IDGenTitle1"
                     text="Select your Excel or CSV file"
                     level="H4"
                     class="sapUiSmallMarginBottom"
                   />
 
-                  <Text
+                  <Text id="_IDGenText"
                     text="Supported: .xlsx  .xls  .csv  |  Max: 10MB"
                     class="sapUiSmallMarginBottom"
                   />
@@ -59,7 +59,6 @@
                   <u:FileUploader
                     id="fileUploader"
                     width="300px"
-                    accept=".xlsx,.xls,.csv"
                     buttonOnly="false"
                     buttonText="Choose File"
                     change="onFileChange"
@@ -116,48 +115,48 @@
               class="sapUiMediumMarginBottom"
             >
               <headerToolbar>
-                <Toolbar>
-                  <Title text="File Summary" level="H4" />
+                <Toolbar id="_IDGenToolbar1">
+                  <Title id="_IDGenTitle2" text="File Summary" level="H4" />
                 </Toolbar>
               </headerToolbar>
               <content>
-                <HBox
+                <HBox id="_IDGenHBox"
                   justifyContent="SpaceAround"
                   wrap="Wrap"
                   class="sapUiMediumMargin"
                 >
 
-                  <VBox alignItems="Center" class="sapUiMediumMarginEnd sapUiMediumMarginBottom">
-                    <core:Icon
+                  <VBox id="_IDGenVBox2" alignItems="Center" class="sapUiMediumMarginEnd sapUiMediumMarginBottom">
+                    <core:Icon id="_IDGenIcon1"
                       src="sap-icon://list"
                       size="2rem"
                       color="#0070f2"
                       class="sapUiSmallMarginBottom"
                     />
                     <Title id="totalRowsText" text="0" level="H2" />
-                    <Label text="Total Rows" />
+                    <Label id="_IDGenLabel" text="Total Rows" />
                   </VBox>
 
-                  <VBox alignItems="Center" class="sapUiMediumMarginEnd sapUiMediumMarginBottom">
-                    <core:Icon
+                  <VBox id="_IDGenVBox3" alignItems="Center" class="sapUiMediumMarginEnd sapUiMediumMarginBottom">
+                    <core:Icon id="_IDGenIcon2"
                       src="sap-icon://table-column"
                       size="2rem"
                       color="#e76500"
                       class="sapUiSmallMarginBottom"
                     />
                     <Title id="totalColsText" text="0" level="H2" />
-                    <Label text="Total Columns" />
+                    <Label id="_IDGenLabel1" text="Total Columns" />
                   </VBox>
 
-                  <VBox alignItems="Center" class="sapUiMediumMarginBottom">
-                    <core:Icon
+                  <VBox id="_IDGenVBox4" alignItems="Center" class="sapUiMediumMarginBottom">
+                    <core:Icon id="_IDGenIcon3"
                       src="sap-icon://document-text"
                       size="2rem"
                       color="#188918"
                       class="sapUiSmallMarginBottom"
                     />
                     <Title id="sheetNameText" text="-" level="H4" />
-                    <Label text="Sheet Name" />
+                    <Label id="_IDGenLabel2" text="Sheet Name" />
                   </VBox>
 
                 </HBox>
@@ -171,22 +170,22 @@
               width="100%"
             >
               <headerToolbar>
-                <OverflowToolbar>
+                <OverflowToolbar id="_IDGenOverflowToolbar">
                   <Title id="tableTitle" text="Excel Data" level="H4" />
-                  <ToolbarSpacer />
+                  <ToolbarSpacer id="_IDGenToolbarSpacer" />
                   <SearchField
                     id="searchField"
                     placeholder="Search..."
                     liveChange="onSearch"
                     width="200px"
                   />
-                  <Button
+                  <Button id="_IDGenButton2"
                     text="Export CSV"
                     icon="sap-icon://download"
                     type="Transparent"
                     press="onExportCSV"
                   />
-                  <Button
+                  <Button id="_IDGenButton3"
                     icon="sap-icon://delete"
                     tooltip="Delete Selected"
                     press="onDeleteRows"
@@ -204,8 +203,8 @@
                   width="100%"
                   noDataText="No data. Please upload an Excel file."
                 >
-                  <columns id="tableColumns" />
-                  <items id="tableItems" />
+                  <columns />
+                  <items  />
                 </Table>
               </content>
             </Panel>
@@ -214,10 +213,10 @@
         </content>
 
         <footer>
-          <Toolbar>
-            <ToolbarSpacer />
-            <Text text="Excel Upload App | SAP UI5" />
-            <ToolbarSpacer />
+          <Toolbar id="_IDGenToolbar2">
+            <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+            <Text id="_IDGenText1" text="Excel Upload App | SAP UI5" />
+            <ToolbarSpacer id="_IDGenToolbarSpacer2" />
           </Toolbar>
         </footer>
 
