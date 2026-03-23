@@ -1,0 +1,228 @@
+<mvc:View
+  controllerName="com.excel.excelupload.controller.MainView"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:core="sap.ui.core"
+  xmlns:u="sap.ui.unified"
+  displayBlock="true"
+>
+
+  <App id="app">
+    <pages>
+      <Page
+        id="mainPage"
+        title="Excel Upload And Display"
+        enableScrolling="true"
+      >
+
+        <headerContent>
+          <Button
+            icon="sap-icon://refresh"
+            tooltip="Reset"
+            press="onReset"
+            type="Transparent"
+          />
+        </headerContent>
+
+        <content>
+          <VBox class="sapUiMediumMargin">
+
+            <!-- ====== UPLOAD PANEL ====== -->
+            <Panel width="100%" class="sapUiMediumMarginBottom">
+              <headerToolbar>
+                <Toolbar>
+                  <Title text="Upload Excel File" level="H4" />
+                </Toolbar>
+              </headerToolbar>
+              <content>
+                <VBox alignItems="Center" class="sapUiMediumMargin">
+
+                  <core:Icon
+                    src="sap-icon://excel-attachment"
+                    size="3rem"
+                    color="#0070f2"
+                    class="sapUiSmallMarginBottom"
+                  />
+
+                  <Title
+                    text="Select your Excel or CSV file"
+                    level="H4"
+                    class="sapUiSmallMarginBottom"
+                  />
+
+                  <Text
+                    text="Supported: .xlsx  .xls  .csv  |  Max: 10MB"
+                    class="sapUiSmallMarginBottom"
+                  />
+
+                  <u:FileUploader
+                    id="fileUploader"
+                    width="300px"
+                    accept=".xlsx,.xls,.csv"
+                    buttonOnly="false"
+                    buttonText="Choose File"
+                    change="onFileChange"
+                    class="sapUiSmallMarginTop sapUiSmallMarginBottom"
+                  />
+
+                  <Button
+                    id="uploadBtn"
+                    text="Upload and Parse"
+                    type="Emphasized"
+                    icon="sap-icon://upload"
+                    press="onUploadPress"
+                    enabled="false"
+                    class="sapUiSmallMarginTop"
+                  />
+
+                </VBox>
+
+                <MessageStrip
+                  id="fileInfoStrip"
+                  text="No file selected"
+                  type="Information"
+                  showIcon="true"
+                  visible="false"
+                  class="sapUiSmallMargin"
+                />
+
+                <MessageStrip
+                  id="errorStrip"
+                  text=""
+                  type="Error"
+                  showIcon="true"
+                  visible="false"
+                  class="sapUiSmallMargin"
+                />
+
+                <ProgressIndicator
+                  id="uploadProgress"
+                  visible="false"
+                  percentValue="0"
+                  displayValue="Processing..."
+                  state="Information"
+                  class="sapUiSmallMargin"
+                />
+
+              </content>
+            </Panel>
+
+            <!-- ====== STATS PANEL ====== -->
+            <Panel
+              id="statsPanel"
+              visible="false"
+              width="100%"
+              class="sapUiMediumMarginBottom"
+            >
+              <headerToolbar>
+                <Toolbar>
+                  <Title text="File Summary" level="H4" />
+                </Toolbar>
+              </headerToolbar>
+              <content>
+                <HBox
+                  justifyContent="SpaceAround"
+                  wrap="Wrap"
+                  class="sapUiMediumMargin"
+                >
+
+                  <VBox alignItems="Center" class="sapUiMediumMarginEnd sapUiMediumMarginBottom">
+                    <core:Icon
+                      src="sap-icon://list"
+                      size="2rem"
+                      color="#0070f2"
+                      class="sapUiSmallMarginBottom"
+                    />
+                    <Title id="totalRowsText" text="0" level="H2" />
+                    <Label text="Total Rows" />
+                  </VBox>
+
+                  <VBox alignItems="Center" class="sapUiMediumMarginEnd sapUiMediumMarginBottom">
+                    <core:Icon
+                      src="sap-icon://table-column"
+                      size="2rem"
+                      color="#e76500"
+                      class="sapUiSmallMarginBottom"
+                    />
+                    <Title id="totalColsText" text="0" level="H2" />
+                    <Label text="Total Columns" />
+                  </VBox>
+
+                  <VBox alignItems="Center" class="sapUiMediumMarginBottom">
+                    <core:Icon
+                      src="sap-icon://document-text"
+                      size="2rem"
+                      color="#188918"
+                      class="sapUiSmallMarginBottom"
+                    />
+                    <Title id="sheetNameText" text="-" level="H4" />
+                    <Label text="Sheet Name" />
+                  </VBox>
+
+                </HBox>
+              </content>
+            </Panel>
+
+            <!-- ====== TABLE PANEL ====== -->
+            <Panel
+              id="tablePanel"
+              visible="false"
+              width="100%"
+            >
+              <headerToolbar>
+                <OverflowToolbar>
+                  <Title id="tableTitle" text="Excel Data" level="H4" />
+                  <ToolbarSpacer />
+                  <SearchField
+                    id="searchField"
+                    placeholder="Search..."
+                    liveChange="onSearch"
+                    width="200px"
+                  />
+                  <Button
+                    text="Export CSV"
+                    icon="sap-icon://download"
+                    type="Transparent"
+                    press="onExportCSV"
+                  />
+                  <Button
+                    icon="sap-icon://delete"
+                    tooltip="Delete Selected"
+                    press="onDeleteRows"
+                    type="Transparent"
+                  />
+                </OverflowToolbar>
+              </headerToolbar>
+              <content>
+                <Table
+                  id="excelTable"
+                  mode="MultiSelect"
+                  growing="true"
+                  growingThreshold="20"
+                  alternateRowColors="true"
+                  width="100%"
+                  noDataText="No data. Please upload an Excel file."
+                >
+                  <columns id="tableColumns" />
+                  <items id="tableItems" />
+                </Table>
+              </content>
+            </Panel>
+
+          </VBox>
+        </content>
+
+        <footer>
+          <Toolbar>
+            <ToolbarSpacer />
+            <Text text="Excel Upload App | SAP UI5" />
+            <ToolbarSpacer />
+          </Toolbar>
+        </footer>
+
+      </Page>
+    </pages>
+  </App>
+
+</mvc:View>
